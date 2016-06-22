@@ -1,5 +1,24 @@
 include: default.yaml
-include: omg.yaml
+
+clouds:
+    fuel:
+        url: http://172.16.174.139:8000/
+
+        # fuel UI creds
+        creds: admin:admin@admin
+
+        # fuel master ssh passwd
+        ssh_creds: root:r00tme
+
+        # openstack environment
+        openstack_env: "zmq-env"
+discover: fuel
+
+sensors:
+    roles_mapping:
+        compute: vmstat
+        controller: vmstat
+    sensors_remote_path: /tmp/sensors
 
 tests:
     - zmq:
