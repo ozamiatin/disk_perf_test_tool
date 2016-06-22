@@ -37,6 +37,7 @@ TOOL_TYPE_MAPPER = {
     "omg": OmgTest,
     "pika": OmgTest,
     "zmq": OmgTest,
+    "zmq-proxy": OmgTest,
     "rabbit": OmgTest,
     "qpid": OmgTest,
 }
