@@ -107,9 +107,32 @@ if [ "$TEST" = "zmq" ]
 then
     echo "[DEFAULT]" > /tmp/zmq.conf
     echo "rpc_zmq_host = $host_ip" >> /tmp/zmq.conf
+    echo "use_router_proxy = false" >> /tmp/zmq.conf
     echo "[matchmaker_redis]" >> /tmp/zmq.conf
-    echo "sentinel_hosts = $sentinel" >> /tmp/zmq.conf
+#    echo "sentinel_hosts = $sentinel" >> /tmp/zmq.conf
+    echo "host = node-8" >> /tmp/zmq.conf
+    echo "port = 6379" >> /tmp/zmq.conf
     CONF_FILE_OPT="--config-file /tmp/zmq.conf"
+fi
+
+
+if [ "$TEST" = "zmq-proxy" ]
+then
+    echo "[DEFAULT]" > /tmp/zmq.conf
+    echo "rpc_zmq_host = $host_ip" >> /tmp/zmq.conf
+    echo "use_router_proxy = true" >> /tmp/zmq.conf
+    echo "[matchmaker_redis]" >> /tmp/zmq.conf
+#    echo "sentinel_hosts = $sentinel" >> /tmp/zmq.conf
+    echo "host = node-8" >> /tmp/zmq.conf
+    echo "port = 6379" >> /tmp/zmq.conf
+    CONF_FILE_OPT="--config-file /tmp/zmq.conf"
+fi
+
+
+DEBUG_OPT=""
+if [ "$DEBUG" = "True" ]
+then
+    DEBUG_OPT="--debug True"
 fi
 
 # generate topics
@@ -137,7 +160,7 @@ unset IFS
 # start servers
 for i in `seq "$SERVERS"`;
  do
- python simulator.py --debug "$DEBUG" $CONF_FILE_OPT  --url "$url" -tp "${topics_arr[$((i % NUM_TOPICS))]}" -s $hostname rpc-server &> "$SERVER_LOG_FILE$i" &
+ python simulator.py $DEBUG_OPT $CONF_FILE_OPT  --url "$url" -tp "${topics_arr[$((i % NUM_TOPICS))]}" -s $hostname rpc-server &> "$SERVER_LOG_FILE$i" &
  done
 
 # wait for all server processes to start
@@ -150,7 +173,7 @@ sleep 5 # sleep for all servers to get ready
 
 # start client
 # add "--is-cast" True for cast "--is-cast --is-fanout True" for fanout to the end of command
-python simulator.py --debug "$DEBUG" $CONF_FILE_OPT -tg $targets --url "$url" rpc-client --timeout 60 -p "$CLIENTS" -m "$NUM_MESSAGES" &> "$CLIENT_LOG_FILE" &
+python simulator.py $DEBUG_OPT $CONF_FILE_OPT -tg $targets --url "$url" rpc-client --timeout 60 -p "$CLIENTS" -m "$NUM_MESSAGES" &> "$CLIENT_LOG_FILE" &
 
 sleep 2 # sleep for client ot start
 
