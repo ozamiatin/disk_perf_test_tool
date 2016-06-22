@@ -72,7 +72,7 @@ if [ "$TEST" = "rabbit" ]
     done
 fi
 
-if [ "$TEST" = "zmq" ]
+if [ "$TEST" = "zmq" ] || [ "$TEST" = "zmq-proxy" ]
  then
    url="zmq://"
    sentinel=""
@@ -102,7 +102,6 @@ source /tmp/venv/bin/activate
 # retrieve host ip
 host_ip=`ip a | grep 192.168 | awk '{print $2}' | sed 's/\//\ /g' | awk '{print $1}' |head -1`
 
-# if zmq - start broker
 if [ "$TEST" = "zmq" ]
 then
     echo "[DEFAULT]" > /tmp/zmq.conf
@@ -113,10 +112,8 @@ then
     echo "host = node-8" >> /tmp/zmq.conf
     echo "port = 6379" >> /tmp/zmq.conf
     CONF_FILE_OPT="--config-file /tmp/zmq.conf"
-fi
 
-
-if [ "$TEST" = "zmq-proxy" ]
+elif [ "$TEST" = "zmq-proxy" ]
 then
     echo "[DEFAULT]" > /tmp/zmq.conf
     echo "rpc_zmq_host = $host_ip" >> /tmp/zmq.conf
