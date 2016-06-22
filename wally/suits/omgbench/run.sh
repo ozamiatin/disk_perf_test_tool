@@ -30,6 +30,10 @@ case $key in
     CONTROLLERS="$2"
     shift
     ;;
+    debug)
+    DEBUG="$2"
+    shift
+    ;;
     *)
     echo "Unknown option $key"
     exit 1
@@ -133,7 +137,7 @@ unset IFS
 # start servers
 for i in `seq "$SERVERS"`;
  do
- python simulator.py $CONF_FILE_OPT  --url "$url" -tp "${topics_arr[$((i % NUM_TOPICS))]}" -s $hostname rpc-server &> "$SERVER_LOG_FILE$i" &
+ python simulator.py --debug "$DEBUG" $CONF_FILE_OPT  --url "$url" -tp "${topics_arr[$((i % NUM_TOPICS))]}" -s $hostname rpc-server &> "$SERVER_LOG_FILE$i" &
  done
 
 # wait for all server processes to start
@@ -146,7 +150,7 @@ sleep 5 # sleep for all servers to get ready
 
 # start client
 # add "--is-cast" True for cast "--is-cast --is-fanout True" for fanout to the end of command
-python simulator.py $CONF_FILE_OPT -tg $targets --url "$url" rpc-client --timeout 60 -p "$CLIENTS" -m "$NUM_MESSAGES" &> "$CLIENT_LOG_FILE" &
+python simulator.py --debug "$DEBUG" $CONF_FILE_OPT -tg $targets --url "$url" rpc-client --timeout 60 -p "$CLIENTS" -m "$NUM_MESSAGES" &> "$CLIENT_LOG_FILE" &
 
 sleep 2 # sleep for client ot start
 
