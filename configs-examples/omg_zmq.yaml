@@ -1,3 +1,4 @@
+include: default.yaml
 include: omg.yaml
 
 tests:
