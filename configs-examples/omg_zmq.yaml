@@ -26,6 +26,7 @@ tests:
         run_script: "wally/suits/omgbench/run.sh"
         run_opts:
             test: zmq
+            pattern: cast
             num_messages: 1000
             controllers: "\"node-8 node-14 node-18\""
             num_topics: 2
@@ -38,6 +39,7 @@ tests:
         run_script: "wally/suits/omgbench/run.sh"
         run_opts:
             test: zmq-proxy
+            pattern: cast
             num_messages: 1000
             controllers: "\"node-8 node-14 node-18\""
             num_topics: 2

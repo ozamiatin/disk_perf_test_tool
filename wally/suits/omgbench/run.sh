@@ -34,6 +34,10 @@ case $key in
     DEBUG="$2"
     shift
     ;;
+    pattern)
+    PATTERN="$2"
+    shift
+    ;;
     *)
     echo "Unknown option $key"
     exit 1
@@ -126,6 +130,15 @@ then
 fi
 
 
+PATTERN_KEY=""
+if [ "$PATTERN" = "cast" ]
+then
+    PATTERN_KEY="--is-cast True"
+elif [ "$PATTERN" = "fanout" ]
+then
+    PATTERN_KEY="--is-cast True --is-fanout True"
+fi
+
 DEBUG_OPT=""
 if [ "$DEBUG" = "True" ]
 then
@@ -170,7 +183,7 @@ sleep 5 # sleep for all servers to get ready
 
 # start client
 # add "--is-cast" True for cast "--is-cast --is-fanout True" for fanout to the end of command
-python simulator.py $DEBUG_OPT $CONF_FILE_OPT -tg $targets --url "$url" rpc-client --timeout 60 -p "$CLIENTS" -m "$NUM_MESSAGES" &> "$CLIENT_LOG_FILE" &
+python simulator.py $DEBUG_OPT $CONF_FILE_OPT -tg $targets --url "$url" rpc-client $PATTERN_KEY --timeout 60 -p "$CLIENTS" -m "$NUM_MESSAGES" &> "$CLIENT_LOG_FILE" &
 
 sleep 2 # sleep for client ot start
 
