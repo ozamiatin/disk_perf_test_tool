@@ -26,6 +26,58 @@ tests:
         run_script: "wally/suits/omgbench/run.sh"
         run_opts:
             test: zmq
+            pattern: call
+            num_messages: 1000
+            controllers: "\"node-8 node-14 node-18\""
+            num_topics: 2
+            servers: 2
+            clients: 40
+            debug: False
+        testnodes: [compute]
+    - zmq-proxy:
+        prerun_script: "wally/suits/omgbench/prepare.sh"
+        run_script: "wally/suits/omgbench/run.sh"
+        run_opts:
+            test: zmq-proxy
+            pattern: call
+            num_messages: 1000
+            controllers: "\"node-8 node-14 node-18\""
+            num_topics: 2
+            servers: 2
+            clients: 40
+            debug: False
+        testnodes: [compute]
+    - zmq:
+        prerun_script: "wally/suits/omgbench/prepare.sh"
+        run_script: "wally/suits/omgbench/run.sh"
+        run_opts:
+            test: zmq
+            pattern: cast
+            num_messages: 1000
+            controllers: "\"node-8 node-14 node-18\""
+            num_topics: 2
+            servers: 2
+            clients: 40
+            debug: False
+        testnodes: [compute]
+    - zmq-proxy:
+        prerun_script: "wally/suits/omgbench/prepare.sh"
+        run_script: "wally/suits/omgbench/run.sh"
+        run_opts:
+            test: zmq-proxy
+            pattern: cast
+            num_messages: 1000
+            controllers: "\"node-8 node-14 node-18\""
+            num_topics: 2
+            servers: 2
+            clients: 40
+            debug: False
+        testnodes: [compute]
+    - zmq:
+        prerun_script: "wally/suits/omgbench/prepare.sh"
+        run_script: "wally/suits/omgbench/run.sh"
+        run_opts:
+            test: zmq
             pattern: fanout
             num_messages: 1000
             controllers: "\"node-8 node-14 node-18\""
