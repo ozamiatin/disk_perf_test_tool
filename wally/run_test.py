@@ -39,11 +39,27 @@ TOOL_TYPE_MAPPER = {
     "zmq": OmgTest,
     "zmq-proxy": OmgTest,
     "rabbit": OmgTest,
+    "zmq-call": OmgTest,
+    "zmq-proxy-call": OmgTest,
+    "rabbit-call": OmgTest,
+    "zmq-cast": OmgTest,
+    "zmq-proxy-cast": OmgTest,
+    "rabbit-cast": OmgTest,
+    "zmq-fanout": OmgTest,
+    "zmq-proxy-fanout": OmgTest,
+    "rabbit-fanout": OmgTest,
     "qpid": OmgTest,
 }
 
 
-OMG_TEST_NAMES = ['omg', 'pika', 'rabbit', 'zmq', 'zmq-proxy', 'qpid']
+OMG_TEST_NAMES = ['omg', 'pika',
+                  'rabbit',
+                  'rabbit-call', 'rabbit-cast', 'rabbit-fanout',
+                  'zmq',
+                  'zmq-call', 'zmq-cast', 'zmq-fanout',
+                  'zmq-proxy',
+                  'zmq-proxy-call', 'zmq-proxy-cast', 'zmq-proxy-fanout',
+                  'qpid']
 
 
 logger = logging.getLogger("wally")
