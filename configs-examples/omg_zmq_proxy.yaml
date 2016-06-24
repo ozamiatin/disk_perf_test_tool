@@ -34,16 +34,16 @@ test_node_defaults: &test_node_def
     testnodes: [compute]
 
 tests:
-    - zmq-call:
+    - zmq-proxy-call:
         <<: *test_node_def
         run_opts:
-            test: zmq
+            test: zmq-proxy
             pattern: call
             <<: *run_opts_def
-    - zmq-cast:
+    - zmq-proxy-cast:
         <<: *test_node_def
         run_opts:
-            test: zmq
+            test: zmq-proxy
             pattern: cast
             <<: *run_opts_def
     - zmq-proxy-fanout:

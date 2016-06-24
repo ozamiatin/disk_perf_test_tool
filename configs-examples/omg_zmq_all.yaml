@@ -40,6 +40,18 @@ tests:
             test: zmq
             pattern: call
             <<: *run_opts_def
+    - zmq-proxy-call:
+        <<: *test_node_def
+        run_opts:
+            test: zmq-proxy
+            pattern: call
+            <<: *run_opts_def
+    - zmq-proxy-cast:
+        <<: *test_node_def
+        run_opts:
+            test: zmq-proxy
+            pattern: cast
+            <<: *run_opts_def
     - zmq-cast:
         <<: *test_node_def
         run_opts:
