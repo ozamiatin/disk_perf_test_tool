@@ -1,37 +1,5 @@
-include: default.yaml
+include: omg.yaml
 
-clouds:
-    fuel:
-        url: http://172.16.174.139:8000/
-
-        # fuel UI creds
-        creds: admin:admin@admin
-
-        # fuel master ssh passwd
-        ssh_creds: root:r00tme
-
-        # openstack environment
-        openstack_env: "zmq-env"
-discover: fuel
-
-sensors:
-    roles_mapping:
-        compute: vmstat
-        controller: vmstat
-    sensors_remote_path: /tmp/sensors
-
-run_opts_defaults: &run_opts_def
-    num_messages: 1000
-    controllers: "\"node-8 node-14 node-18\""
-    num_topics: 2
-    servers: 2
-    clients: 40
-    debug: False
-
-test_node_defaults: &test_node_def
-    prerun_script: "wally/suits/omgbench/prepare.sh"
-    run_script: "wally/suits/omgbench/run.sh"
-    testnodes: [compute]
 
 tests:
     - zmq-proxy-call:

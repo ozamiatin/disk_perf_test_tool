@@ -1,4 +1,30 @@
-include: default.yaml
+settings:
+    collect_info: false
+    suspend_unused_vms: false
+    results_storage: /var/wally_results
+    log_level: DEBUG
+
+vm_configs:
+    keypair_file_private: wally_vm_key.pem
+    keypair_file_public: wally_vm_key.pub
+    keypair_name: wally_vm_key
+
+    wally_1024:
+        image:
+            name: wally_ubuntu
+            url: https://cloud-images.ubuntu.com/trusty/current/trusty-server-cloudimg-amd64-disk1.img
+            creds: "ssh://ubuntu@{ip}::{private_key_path}"
+
+        flavor:
+            name: wally_1024
+            hdd_size: 100
+            ram_size: 1024
+            cpu_count: 2
+
+        vol_sz: 100
+        name_templ: wally-{group}-{id}
+        aa_group_name: wally-aa-{0}
+        security_group: wally_ssh_to_everyone
 
 clouds:
     fuel:
@@ -19,3 +45,16 @@ sensors:
         compute: vmstat
         controller: vmstat
     sensors_remote_path: /tmp/sensors
+
+run_opts_defaults: &run_opts_def
+    num_messages: 1000
+    controllers: "\"node-8 node-14 node-18\""
+    num_topics: 2
+    servers: 2
+    clients: 40
+    debug: False
+
+test_node_defaults: &test_node_def
+    prerun_script: "wally/suits/omgbench/prepare.sh"
+    run_script: "wally/suits/omgbench/run.sh"
+    testnodes: [compute]
