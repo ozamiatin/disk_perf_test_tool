@@ -40,69 +40,27 @@ tests:
             test: zmq
             pattern: call
             <<: *run_opts_def
-#
-#    - zmq-proxy-call:
-#        prerun_script: "wally/suits/omgbench/prepare.sh"
-#        run_script: "wally/suits/omgbench/run.sh"
-#        run_opts:
-#            test: zmq-proxy
-#            pattern: call
-#            num_messages: 1000
-#            controllers: "\"node-8 node-14 node-18\""
-#            num_topics: 2
-#            servers: 2
-#            clients: 40
-#            debug: False
-#        testnodes: [compute]
-#    - zmq-cast:
-#        prerun_script: "wally/suits/omgbench/prepare.sh"
-#        run_script: "wally/suits/omgbench/run.sh"
-#        run_opts:
-#            test: zmq
-#            pattern: cast
-#            num_messages: 1000
-#            controllers: "\"node-8 node-14 node-18\""
-#            num_topics: 2
-#            servers: 2
-#            clients: 40
-#            debug: False
-#        testnodes: [compute]
-#    - zmq-proxy-cast:
-#        prerun_script: "wally/suits/omgbench/prepare.sh"
-#        run_script: "wally/suits/omgbench/run.sh"
-#        run_opts:
-#            test: zmq-proxy
-#            pattern: cast
-#            num_messages: 1000
-#            controllers: "\"node-8 node-14 node-18\""
-#            num_topics: 2
-#            servers: 2
-#            clients: 40
-#            debug: False
-#        testnodes: [compute]
-##    - zmq-fanout:
-##        prerun_script: "wally/suits/omgbench/prepare.sh"
-##        run_script: "wally/suits/omgbench/run.sh"
-##        run_opts:
-##            test: zmq
-##            pattern: fanout
-##            num_messages: 1000
-##            controllers: "\"node-8 node-14 node-18\""
-##            num_topics: 2
-##            servers: 2
-##            clients: 40
-##            debug: False
-##        testnodes: [compute]
-#    - zmq-proxy-fanout:
-#        prerun_script: "wally/suits/omgbench/prepare.sh"
-#        run_script: "wally/suits/omgbench/run.sh"
-#        run_opts:
-#            test: zmq-proxy
-#            pattern: fanout
-#            num_messages: 1000
-#            controllers: "\"node-8 node-14 node-18\""
-#            num_topics: 2
-#            servers: 2
-#            clients: 40
-#            debug: False
-#        testnodes: [compute]
+    - zmq-proxy-call:
+        <<: *test_node_def
+        run_opts:
+            test: zmq-proxy
+            pattern: call
+            <<: *run_opts_def
+    - zmq-proxy-cast:
+        <<: *test_node_def
+        run_opts:
+            test: zmq-proxy
+            pattern: cast
+            <<: *run_opts_def
+    - zmq-cast:
+        <<: *test_node_def
+        run_opts:
+            test: zmq
+            pattern: cast
+            <<: *run_opts_def
+    - zmq-proxy-fanout:
+        <<: *test_node_def
+        run_opts:
+            test: zmq-proxy
+            pattern: fanout
+            <<: *run_opts_def
