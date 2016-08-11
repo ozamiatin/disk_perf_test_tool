@@ -7,11 +7,13 @@ set -x
 #exit 0
 #fi
 
+rm -rf /tmp/venv
+rm -rf /tmp/oslo.messaging
+
 apt-get update
 apt-get -y install git python-pip virtualenv python-dev
 
 cd /tmp
-rm -rf /tmp/venv
 mkdir venv
 cd venv
 virtualenv --no-setuptools .
