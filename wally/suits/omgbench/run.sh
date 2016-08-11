@@ -108,23 +108,23 @@ host_ip=`ip a | grep 192.168 | awk '{print $2}' | sed 's/\//\ /g' | awk '{print 
 
 if [ "$TEST" = "zmq" ]
 then
-    echo "[DEFAULT]" > /tmp/zmq.conf
+    echo "[oslo_messaging_zmq]" > /tmp/zmq.conf
     echo "rpc_zmq_host = $host_ip" >> /tmp/zmq.conf
     echo "use_router_proxy = false" >> /tmp/zmq.conf
     echo "[matchmaker_redis]" >> /tmp/zmq.conf
 #    echo "sentinel_hosts = $sentinel" >> /tmp/zmq.conf
-    echo "host = node-8" >> /tmp/zmq.conf
+    echo "host = node-16" >> /tmp/zmq.conf
     echo "port = 6379" >> /tmp/zmq.conf
     CONF_FILE_OPT="--config-file /tmp/zmq.conf"
 
 elif [ "$TEST" = "zmq-proxy" ]
 then
-    echo "[DEFAULT]" > /tmp/zmq.conf
+    echo "[oslo_messaging_zmq]" > /tmp/zmq.conf
     echo "rpc_zmq_host = $host_ip" >> /tmp/zmq.conf
     echo "use_router_proxy = true" >> /tmp/zmq.conf
     echo "[matchmaker_redis]" >> /tmp/zmq.conf
 #    echo "sentinel_hosts = $sentinel" >> /tmp/zmq.conf
-    echo "host = node-8" >> /tmp/zmq.conf
+    echo "host = node-16" >> /tmp/zmq.conf
     echo "port = 6379" >> /tmp/zmq.conf
     CONF_FILE_OPT="--config-file /tmp/zmq.conf"
 fi
