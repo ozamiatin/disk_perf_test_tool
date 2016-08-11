@@ -11,6 +11,7 @@ apt-get update
 apt-get -y install git python-pip virtualenv python-dev
 
 cd /tmp
+rm -rf /tmp/venv
 mkdir venv
 cd venv
 virtualenv --no-setuptools .
