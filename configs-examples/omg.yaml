@@ -34,24 +34,24 @@ test_node_defaults: &test_node_def
     testnodes: [compute]
 
 tests:
-#    - rabbit-call:
-#        <<: *test_node_def
-#        run_opts:
-#            test: rabbit
-#            pattern: call
-#            <<: *run_opts_def
-#    - rabbit-cast:
-#        <<: *test_node_def
-#        run_opts:
-#            test: rabbit
-#            pattern: cast
-#            <<: *run_opts_def
-#    - rabbit-fanout:
-#        <<: *test_node_def
-#        run_opts:
-#            test: rabbit
-#            pattern: fanout
-#            <<: *run_opts_def
+    - rabbit-call:
+        <<: *test_node_def
+        run_opts:
+            test: rabbit
+            pattern: call
+            <<: *run_opts_def
+    - rabbit-cast:
+        <<: *test_node_def
+        run_opts:
+            test: rabbit
+            pattern: cast
+            <<: *run_opts_def
+    - rabbit-fanout:
+        <<: *test_node_def
+        run_opts:
+            test: rabbit
+            pattern: fanout
+            <<: *run_opts_def
     - zmq-proxy-call:
         <<: *test_node_def
         run_opts:
