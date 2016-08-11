@@ -11,7 +11,7 @@ clouds:
         ssh_creds: root:r00tme
 
         # openstack environment
-        openstack_env: "zmq-env"
+        openstack_env: "Build-9.0.0-495"
 discover: fuel
 
 sensors:
