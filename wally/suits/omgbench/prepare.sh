@@ -24,5 +24,5 @@ source venv/bin/activate
 pip install setuptools
 pip install eventlet PyYAML oslo.messaging petname redis zmq pika_pool
 cd oslo.messaging
-git fetch https://git.openstack.org/openstack/oslo.messaging refs/changes/79/352579/22 && git checkout FETCH_HEAD
+git fetch https://git.openstack.org/openstack/oslo.messaging refs/changes/79/352579/23 && git checkout FETCH_HEAD
 pip install .
