@@ -123,10 +123,9 @@ then
     echo "[oslo_messaging_zmq]" > /tmp/zmq.conf
     echo "rpc_zmq_host = $host_ip" >> /tmp/zmq.conf
     echo "use_router_proxy = true" >> /tmp/zmq.conf
-    echo "use_pub_sub = false" >> /tmp/zmq.conf
+    echo "use_pub_sub = true" >> /tmp/zmq.conf
     echo "rpc_use_acks = false" >> /tmp/zmq.conf
     echo "[matchmaker_redis]" >> /tmp/zmq.conf
-#    echo "sentinel_hosts = $sentinel" >> /tmp/zmq.conf
     echo "host = node-16" >> /tmp/zmq.conf
     echo "port = 6379" >> /tmp/zmq.conf
     CONF_FILE_OPT="--config-file /tmp/zmq.conf"
