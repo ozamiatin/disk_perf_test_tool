@@ -26,7 +26,7 @@ run_opts_defaults: &run_opts_def
     num_topics: 2
     servers: 2
     clients: 40
-    debug: True
+    debug: False
 
 test_node_defaults: &test_node_def
     prerun_script: "wally/suits/omgbench/prepare.sh"
