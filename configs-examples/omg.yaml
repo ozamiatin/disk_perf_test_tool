@@ -34,42 +34,42 @@ test_node_defaults: &test_node_def
     testnodes: [compute]
 
 tests:
-    - rabbit-call:
-        <<: *test_node_def
-        run_opts:
-            test: rabbit
-            pattern: call
-            <<: *run_opts_def
-    - rabbit-cast:
-        <<: *test_node_def
-        run_opts:
-            test: rabbit
-            pattern: cast
-            <<: *run_opts_def
-    - rabbit-fanout:
-        <<: *test_node_def
-        run_opts:
-            test: rabbit
-            pattern: fanout
-            <<: *run_opts_def
-#    - zmq-proxy-call:
+#    - rabbit-call:
 #        <<: *test_node_def
 #        run_opts:
-#            test: zmq-proxy
+#            test: rabbit
 #            pattern: call
 #            <<: *run_opts_def
-#    - zmq-proxy-cast:
+#    - rabbit-cast:
 #        <<: *test_node_def
 #        run_opts:
-#            test: zmq-proxy
+#            test: rabbit
 #            pattern: cast
 #            <<: *run_opts_def
-#    - zmq-proxy-fanout:
+#    - rabbit-fanout:
 #        <<: *test_node_def
 #        run_opts:
-#            test: zmq-proxy
+#            test: rabbit
 #            pattern: fanout
 #            <<: *run_opts_def
+    - zmq-proxy-call:
+        <<: *test_node_def
+        run_opts:
+            test: zmq-proxy
+            pattern: call
+            <<: *run_opts_def
+    - zmq-proxy-cast:
+        <<: *test_node_def
+        run_opts:
+            test: zmq-proxy
+            pattern: cast
+            <<: *run_opts_def
+    - zmq-proxy-fanout:
+        <<: *test_node_def
+        run_opts:
+            test: zmq-proxy
+            pattern: fanout
+            <<: *run_opts_def
 #    - zmq-call:
 #        <<: *test_node_def
 #        run_opts:
