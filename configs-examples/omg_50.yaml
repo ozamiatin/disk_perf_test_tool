@@ -21,7 +21,7 @@ sensors:
     sensors_remote_path: /tmp/sensors
 
 run_opts_defaults: &run_opts_def
-    num_messages: 1000
+    num_messages: 100
     controllers: "\"node-50 node-62 node-64\""
     num_topics: 2
     servers: 2
@@ -58,18 +58,18 @@ tests:
             test: zmq-proxy
             pattern: call
             <<: *run_opts_def
-    - zmq-proxy-cast:
-        <<: *test_node_def
-        run_opts:
-            test: zmq-proxy
-            pattern: cast
-            <<: *run_opts_def
-    - zmq-proxy-fanout:
-        <<: *test_node_def
-        run_opts:
-            test: zmq-proxy
-            pattern: fanout
-            <<: *run_opts_def
+#    - zmq-proxy-cast:
+#        <<: *test_node_def
+#        run_opts:
+#            test: zmq-proxy
+#            pattern: cast
+#            <<: *run_opts_def
+#    - zmq-proxy-fanout:
+#        <<: *test_node_def
+#        run_opts:
+#            test: zmq-proxy
+#            pattern: fanout
+#            <<: *run_opts_def
 #    - zmq-call:
 #        <<: *test_node_def
 #        run_opts:
