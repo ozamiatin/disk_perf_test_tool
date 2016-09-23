@@ -2,7 +2,7 @@ include: default.yaml
 
 clouds:
     fuel:
-        url: http://172.16.174.139:8000/
+        url: http://172.16.174.152:8000/
 
         # fuel UI creds
         creds: admin:admin@admin
@@ -22,7 +22,7 @@ sensors:
 
 run_opts_defaults: &run_opts_def
     num_messages: 1000
-    controllers: "\"node-8 node-14 node-18\""
+    controllers: "\"node-10 node-7 node-8\""
     num_topics: 2
     servers: 2
     clients: 40
@@ -52,33 +52,33 @@ tests:
 #            test: rabbit
 #            pattern: fanout
 #            <<: *run_opts_def
-    - zmq-proxy-call:
-        <<: *test_node_def
-        run_opts:
-            test: zmq-proxy
-            pattern: call
-            <<: *run_opts_def
-    - zmq-proxy-cast:
-        <<: *test_node_def
-        run_opts:
-            test: zmq-proxy
-            pattern: cast
-            <<: *run_opts_def
+#    - zmq-proxy-call:
+#        <<: *test_node_def
+#        run_opts:
+#            test: zmq-proxy
+#            pattern: call
+#            <<: *run_opts_def
+#    - zmq-proxy-cast:
+#        <<: *test_node_def
+#        run_opts:
+#            test: zmq-proxy
+#            pattern: cast
+#            <<: *run_opts_def
     - zmq-proxy-fanout:
         <<: *test_node_def
         run_opts:
             test: zmq-proxy
             pattern: fanout
             <<: *run_opts_def
-#    - zmq-call:
-#        <<: *test_node_def
-#        run_opts:
-#            test: zmq
-#            pattern: call
-#            <<: *run_opts_def
-#    - zmq-cast:
-#        <<: *test_node_def
-#        run_opts:
-#            test: zmq
-#            pattern: cast
-#            <<: *run_opts_def
+    - zmq-call:
+        <<: *test_node_def
+        run_opts:
+            test: zmq
+            pattern: call
+            <<: *run_opts_def
+    - zmq-cast:
+        <<: *test_node_def
+        run_opts:
+            test: zmq
+            pattern: cast
+            <<: *run_opts_def

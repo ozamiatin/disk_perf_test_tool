@@ -114,7 +114,7 @@ then
     echo "use_pub_sub = true" >> /tmp/zmq.conf
     echo "[matchmaker_redis]" >> /tmp/zmq.conf
 #    echo "sentinel_hosts = $sentinel" >> /tmp/zmq.conf
-    echo "host = node-16" >> /tmp/zmq.conf
+    echo "host = node-10" >> /tmp/zmq.conf
     echo "port = 6379" >> /tmp/zmq.conf
     CONF_FILE_OPT="--config-file /tmp/zmq.conf"
 
@@ -127,7 +127,7 @@ then
     echo "rpc_use_acks = false" >> /tmp/zmq.conf
     echo "[matchmaker_redis]" >> /tmp/zmq.conf
 #    echo "sentinel_hosts = $sentinel" >> /tmp/zmq.conf
-    echo "host = node-8" >> /tmp/zmq.conf
+    echo "host = node-10" >> /tmp/zmq.conf
     echo "port = 6379" >> /tmp/zmq.conf
     CONF_FILE_OPT="--config-file /tmp/zmq.conf"
 fi
