@@ -1,0 +1,84 @@
+include: default.yaml
+
+clouds:
+    fuel:
+        url: http://172.16.44.11:8000/
+
+        # fuel UI creds
+        creds: admin:admin@admin
+
+        # fuel master ssh passwd
+        ssh_creds: root:r00tme
+
+        # openstack environment
+        openstack_env: "Build-9.0-mos-495"
+discover: fuel
+
+sensors:
+    roles_mapping:
+        compute: vmstat
+        controller: vmstat
+    sensors_remote_path: /tmp/sensors
+
+run_opts_defaults: &run_opts_def
+    num_messages: 100
+    controllers: "\"node-50 node-62 node-64\""
+    num_topics: 2
+    servers: 2
+    clients: 40
+    debug: False
+
+test_node_defaults: &test_node_def
+    prerun_script: "wally/suits/omgbench/prepare.sh"
+    run_script: "wally/suits/omgbench/run.sh"
+    testnodes: [compute]
+
+tests:
+#    - rabbit-call:
+#        <<: *test_node_def
+#        run_opts:
+#            test: rabbit
+#            pattern: call
+#            <<: *run_opts_def
+#    - rabbit-cast:
+#        <<: *test_node_def
+#        run_opts:
+#            test: rabbit
+#            pattern: cast
+#            <<: *run_opts_def
+#    - rabbit-fanout:
+#        <<: *test_node_def
+#        run_opts:
+#            test: rabbit
+#            pattern: fanout
+#            <<: *run_opts_def
+    - zmq-proxy-call:
+        <<: *test_node_def
+        run_opts:
+            test: zmq-proxy
+            pattern: call
+            <<: *run_opts_def
+#    - zmq-proxy-cast:
+#        <<: *test_node_def
+#        run_opts:
+#            test: zmq-proxy
+#            pattern: cast
+#            <<: *run_opts_def
+#    - zmq-proxy-fanout:
+#        <<: *test_node_def
+#        run_opts:
+#            test: zmq-proxy
+#            pattern: fanout
+#            <<: *run_opts_def
+#    - zmq-call:
+#        <<: *test_node_def
+#        run_opts:
+#            test: zmq
+#            pattern: call
+#            <<: *run_opts_def
+#    - zmq-cast:
+#        <<: *test_node_def
+#        run_opts:
+#            test: zmq
+#            pattern: cast
+#            <<: *run_opts_def

@@ -19,12 +19,14 @@ cd venv
 virtualenv --no-setuptools .
 
 cd /tmp
-#git clone http://github.com/openstack/oslo.messaging
-git clone https://github.com/ozamiatin/oslo.messaging.git
+git clone http://github.com/openstack/oslo.messaging
+#git clone https://github.com/ozamiatin/oslo.messaging.git
 
 source venv/bin/activate
 pip install setuptools
 pip install eventlet PyYAML oslo.messaging petname redis zmq pika_pool
 cd oslo.messaging
+
 git fetch https://git.openstack.org/openstack/oslo.messaging refs/changes/01/372001/23 && git checkout FETCH_HEAD
 pip install .
+
