@@ -3,9 +3,9 @@
 set -e
 set -x
 
-#if [ -d /tmp/venv ]; then
-#exit 0
-#fi
+if [ -d /tmp/venv ]; then
+exit 0
+fi
 
 rm -rf /tmp/venv
 rm -rf /tmp/oslo.messaging
