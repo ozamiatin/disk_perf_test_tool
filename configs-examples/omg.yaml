@@ -21,10 +21,10 @@ sensors:
     sensors_remote_path: /tmp/sensors
 
 run_opts_defaults: &run_opts_def
-    num_messages: 1000
+    num_messages: 100
     controllers: "\"node-10 node-7 node-8\""
-    num_topics: 2
-    servers: 2
+    num_topics: 5
+    servers: 5
     clients: 10
     debug: False
 
