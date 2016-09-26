@@ -70,15 +70,15 @@ tests:
 #            test: zmq-proxy
 #            pattern: fanout
 #            <<: *run_opts_def
-#    - zmq-call:
-#        <<: *test_node_def
-#        run_opts:
-#            test: zmq
-#            pattern: call
-#            <<: *run_opts_def
-    - zmq-cast:
+    - zmq-call:
         <<: *test_node_def
         run_opts:
             test: zmq
-            pattern: cast
+            pattern: call
             <<: *run_opts_def
+#    - zmq-cast:
+#        <<: *test_node_def
+#        run_opts:
+#            test: zmq
+#            pattern: cast
+#            <<: *run_opts_def
