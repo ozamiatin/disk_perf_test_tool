@@ -188,9 +188,11 @@ for i in `seq "$CLIENTS"`;
  do
     # start client
     # add "--is-cast" True for cast "--is-cast --is-fanout True" for fanout to the end of command
-    python simulator.py $DEBUG_OPT $CONF_FILE_OPT -tg $targets --url "$url" rpc-client $PATTERN_KEY --timeout 60 -p "$CLIENTS" -m "$NUM_MESSAGES" &> "$CLIENT_LOG_FILE" &
-    sleep 2 # sleep for client to start
+#    python simulator.py $DEBUG_OPT $CONF_FILE_OPT -tg $targets --url "$url" rpc-client $PATTERN_KEY --timeout 60 -p "$CLIENTS" -m "$NUM_MESSAGES" &> "$CLIENT_LOG_FILE" &
+    python simulator.py $DEBUG_OPT $CONF_FILE_OPT -tg $targets --url "$url" rpc-client $PATTERN_KEY --timeout 60 -p 1 -m "$NUM_MESSAGES" &> "$CLIENT_LOG_FILE" &
  done
+
+    sleep 2 # sleep for client to start
 
 ############### Uncomment distractive #################
 # sleep 5 # sleep before start distractive

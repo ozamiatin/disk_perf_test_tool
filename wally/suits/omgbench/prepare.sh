@@ -3,9 +3,9 @@
 set -e
 set -x
 
-if [ -d /tmp/venv ]; then
-exit 0
-fi
+#if [ -d /tmp/venv ]; then
+#exit 0
+#fi
 
 rm -rf /tmp/venv
 rm -rf /tmp/oslo.messaging
@@ -27,6 +27,6 @@ pip install setuptools
 pip install eventlet PyYAML oslo.messaging petname redis zmq pika_pool
 cd oslo.messaging
 
-git fetch https://git.openstack.org/openstack/oslo.messaging refs/changes/01/372001/23 && git checkout FETCH_HEAD
+git fetch https://git.openstack.org/openstack/oslo.messaging refs/changes/01/372001/24 && git checkout FETCH_HEAD
 pip install .
 
