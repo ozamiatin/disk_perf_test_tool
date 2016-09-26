@@ -23,8 +23,8 @@ sensors:
 run_opts_defaults: &run_opts_def
     num_messages: 100
     controllers: "\"node-10 node-7 node-8\""
-    num_topics: 5
-    servers: 5
+    num_topics: 2
+    servers: 2
     clients: 10
     debug: False
 
