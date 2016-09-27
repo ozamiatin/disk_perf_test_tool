@@ -25,7 +25,7 @@ run_opts_defaults: &run_opts_def
     controllers: "\"node-10 node-7 node-8\""
     num_topics: 2
     servers: 2
-    clients: 10
+    clients: 1
     debug: False
 
 test_node_defaults: &test_node_def
@@ -52,30 +52,30 @@ tests:
 #            test: rabbit
 #            pattern: fanout
 #            <<: *run_opts_def
-#    - zmq-proxy-call:
-#        <<: *test_node_def
-#        run_opts:
-#            test: zmq-proxy
-#            pattern: call
-#            <<: *run_opts_def
-#    - zmq-proxy-cast:
-#        <<: *test_node_def
-#        run_opts:
-#            test: zmq-proxy
-#            pattern: cast
-#            <<: *run_opts_def
-#    - zmq-proxy-fanout:
-#        <<: *test_node_def
-#        run_opts:
-#            test: zmq-proxy
-#            pattern: fanout
-#            <<: *run_opts_def
-    - zmq-call:
+    - zmq-proxy-call:
         <<: *test_node_def
         run_opts:
-            test: zmq
+            test: zmq-proxy
             pattern: call
             <<: *run_opts_def
+    - zmq-proxy-cast:
+        <<: *test_node_def
+        run_opts:
+            test: zmq-proxy
+            pattern: cast
+            <<: *run_opts_def
+    - zmq-proxy-fanout:
+        <<: *test_node_def
+        run_opts:
+            test: zmq-proxy
+            pattern: fanout
+            <<: *run_opts_def
+#    - zmq-call:
+#        <<: *test_node_def
+#        run_opts:
+#            test: zmq
+#            pattern: call
+#            <<: *run_opts_def
 #    - zmq-cast:
 #        <<: *test_node_def
 #        run_opts:
